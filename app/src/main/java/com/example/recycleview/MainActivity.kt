@@ -3,6 +3,7 @@ package com.example.recycleview
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -22,7 +23,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val counrtyList=findViewById<RecyclerView>(R.id.county_list).apply {
             layoutManager=LinearLayoutManager(this@MainActivity)
-            adapter=CountryAdapter().apply {
+            adapter=CountryAdapter {
+                Toast.makeText(this@MainActivity, "Country:{${it.name}} was clicked",
+                    Toast.LENGTH_LONG).show()
+            }.apply {
                 setHasStableIds(true)
             }
             setHasFixedSize(true)
